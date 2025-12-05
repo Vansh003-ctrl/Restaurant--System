@@ -1,0 +1,85 @@
+.feedback-section{
+  width: 100vw;
+  padding: 50px 20px;
+  background: #fff;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 7rem;
+  margin-top: -4rem;
+}
+
+
+.feedback-heading {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 6rem;
+  color: #111;
+}
+
+.feedback-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  scale: 1.2;
+}
+
+.feedback-card {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  background: #fff; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.feedback-text {
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.feedback-user-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.feedback-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f0f0f0;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #555;
+  font-size: 16px;
+}
+
+.feedback-avatar.fallback {
+  background: #f0f0f0;
+}
+
+.feedback-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  color: #222;
+}
+
+.feedback-role {
+  font-size: 12px;
+  margin: 2px 0 0 0;
+  color: #888;
+}
