@@ -304,8 +304,8 @@ const AdminDashboard = () => {
 
           {/* Revenue by Category */}
           <div className="card chart-card mt-5">
-            <h2 className="card-title">Revenue by Category yearly</h2>
-            <p className="chart-subtitle">View detailed revenue by category</p>
+            <h2 className="card-title">Revenue by Yearly</h2>
+            <p className="chart-subtitle">View detailed revenue by yearly</p>
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={revenueData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
