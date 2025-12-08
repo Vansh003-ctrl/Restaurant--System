@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import '../../style/adminPage/admin.css';
+import { Box,HandCoins, ChartNoAxesCombined, Users, PencilLine, Trash2 } from "lucide-react";
 
 const AdminDashboard = () => {
   // State for menu management
@@ -177,7 +178,7 @@ const AdminDashboard = () => {
           <div className="stat-card">
             <div className="stat-header">
               <span className="stat-label">Total Orders</span>
-              <span className="stat-icon">📦</span>
+              <span className="stat-icon"><Box strokeWidth={1.5} /></span>
             </div>
             <div className="stat-value">1,245</div>
           </div>
@@ -185,23 +186,23 @@ const AdminDashboard = () => {
           <div className="stat-card">
             <div className="stat-header">
               <span className="stat-label">Total Revenue</span>
-              <span className="stat-icon">💵</span>
+              <span className="stat-icon"><HandCoins strokeWidth={1.5} /></span>
             </div>
-            <div className="stat-value">$45,678</div>
+            <div className="stat-value">₹45,678</div>
           </div>
 
           <div className="stat-card">
             <div className="stat-header">
               <span className="stat-label">Avg. Order Value</span>
-              <span className="stat-icon">📈</span>
+              <span className="stat-icon"><ChartNoAxesCombined strokeWidth={1.5} /></span>
             </div>
-            <div className="stat-value">$36.69</div>
+            <div className="stat-value">₹369</div>
           </div>
 
           <div className="stat-card">
             <div className="stat-header">
               <span className="stat-label">New Customers</span>
-              <span className="stat-icon">👥</span>
+              <span className="stat-icon"><Users strokeWidth={1.5} /></span>
             </div>
             <div className="stat-value">189</div>
           </div>
@@ -253,8 +254,8 @@ const AdminDashboard = () => {
                         <div className="menu-category">{item.category} • ${item.price}</div>
                       </div>
                       <div className="menu-actions">
-                        <button className="icon-btn" onClick={() => handleEdit(item)}>✏️</button>
-                        <button className="icon-btn" onClick={() => handleDelete(item.id)}>🗑️</button>
+                        <button className="icon-btn" onClick={() => handleEdit(item)}><PencilLine strokeWidth={1} height={19} /></button>
+                        <button className="icon-btn" onClick={() => handleDelete(item.id)}><Trash2 strokeWidth={1} height={19} /></button>
                       </div>
                     </div>
                   ))

@@ -21,6 +21,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   padding-top: 7rem;
+  background-color: #fff;
 }
 
 /* Main Content */
@@ -44,7 +45,7 @@ body {
 }
 
 .section.bg-light {
-  background-color: #f9fafb;
+  background-color: #fff;
 }
 
 /* Hero Section */

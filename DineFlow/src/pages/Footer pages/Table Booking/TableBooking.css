@@ -1,0 +1,115 @@
+/* Root for rem sizing */
+:root {
+    font-size: 62.5%;
+    /* 1rem = 10px */
+}
+
+
+/* Header */
+.booking-header {
+    background: #4b5dff;
+    text-align: center;
+    padding: 4vw 2rem;
+    color: #ffffff;
+    border-bottom: none;
+}
+
+.booking-title {
+    font-size: 5rem;
+    font-weight: 600;
+}
+
+.booking-subtitle {
+    font-size: 1.8rem;
+    margin-top: 0.8rem;
+}
+
+.booking-date {
+    font-size: 1.4rem;
+    margin-top: 0.8rem;
+    opacity: 0.8;
+}
+
+/* Content Section */
+.booking-content {
+    padding: 4rem 10vw;
+}
+
+.section-content h2{
+    font-size: 2.8rem;
+    margin-top: 3rem;
+    font-weight: 500;
+}
+
+.section-title {
+    font-size: 2.4rem;
+    margin: 2rem 0 1rem 0;
+}
+
+.section-text {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+    margin-bottom: 2rem;
+}
+
+/* Form */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    margin-bottom: 3rem;
+}
+
+.booking-label {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.booking-input {
+    padding: 1.4rem;
+    font-size: 1.6rem;
+    border: 1px solid #ccc;
+    border-radius: 0.6rem;
+}
+
+.booking-btn {
+    margin-top: 2rem;
+    padding: 1.6rem;
+    background: #4b5dff;
+    color: white;
+    font-size: 1.8rem;
+    border: none;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.booking-btn:hover {
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .booking-title {
+        font-size: 3.6rem;
+    }
+
+    .booking-header {
+        height: 38vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-title {
+        font-size: 3rem;
+    }
+
+    .booking-header {
+        padding: 10vw 2rem;
+        height: 45vw;
+    }
+
+    .booking-content {
+        padding: 3rem 6%;
+    }
+}

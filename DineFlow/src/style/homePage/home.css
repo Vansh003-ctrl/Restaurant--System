@@ -5,17 +5,11 @@
 }
 
 /* -------------------- HERO SECTION -------------------- */
-.hero {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   background-image: url("C:\Users\91701\OneDrive\Desktop\Restaurant-Automation\DineFlow\src\assets\bg image.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: gilroy;
 }
 
 .overlay {
@@ -102,7 +96,7 @@
 .feedback-section {
     width: 100%;
     padding: 8rem 2rem;
-    background: #f9fafb;
+    background: #000;
     text-align: center;
     font-family: "Poppins", sans-serif;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../../style/MenuPage/FilterBar.css';
+import { Search } from 'lucide-react';
 
 const FilterBar = ({ 
   searchQuery, 
@@ -15,7 +16,7 @@ const FilterBar = ({
     <div className="filter-bar">
       {/* Search Bar */}
       <div className="search-container">
-        <span className="search-icon">🔍</span>
+        <span className="search-icon"><Search /></span>
         <input
           type="text"
           placeholder="Search for dishes..."
