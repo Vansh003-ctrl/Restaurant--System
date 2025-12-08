@@ -1,166 +1,182 @@
+/* ------------------------------
+   SPECIALS SECTION
+------------------------------ */
 #todays-menu {
-  scroll-margin-top: 80px; 
+  scroll-margin-top: 80px;
 }
+
 .specials-section {
-    padding: 8rem 2rem;
-    text-align: center;
-    background: #fff;
-    margin-top: -7rem;
+  padding: 8rem 2rem;
+  text-align: center;
+  background: #fff;
+  margin-top: -7rem;
 }
 
 .specials-section h2 {
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    font-weight: 700;
-    margin-bottom: 4rem;
-    color: #111;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  margin-bottom: 4rem;
+  color: #111;
 }
 
+/* ------------------------------
+   GRID
+------------------------------ */
 .specials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
+/* ------------------------------
+   CARD
+------------------------------ */
 .special-card {
-    background: #fff;
-    border-radius: 1.2rem;
-    padding: 1.5rem;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
+  background: #fff;
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
 }
 
 .special-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
 }
 
 .special-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 1rem;
-    margin-bottom: 1.5rem;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .special-card h3 {
-    font-size: clamp(1.6rem, 3vw, 1.8rem);
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #111;
+  font-size: clamp(1.6rem, 3vw, 1.8rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #111;
 }
 
 .special-card p {
-    font-size: clamp(1.2rem, 2vw, 1.4rem);
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
+/* ------------------------------
+   REDESIGNED FOOTER (FIXED)
+------------------------------ */
 .special-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    flex-wrap: wrap;
-    gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .special-footer span {
-    font-size: clamp(1.8rem, 3vw, 2rem);
-    font-weight: 700;
-    color: #6366f1;
+  font-size: clamp(1.8rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #6366f1;
+  flex-shrink: 0;
+}
+.flexx{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: aliceblue;
 }
 
-.special-footer button {
-    background: #6366f1;
-    color: white;
-    border: none;
-    padding: 0.8rem 2rem;
-    border-radius: 0.6rem;
-    cursor: pointer;
-    font-size: clamp(1.2rem, 2vw, 1.4rem);
-    font-weight: 500;
-    transition: all 0.3s ease;
+/* ------------------------------
+   BUTTON (ADD TO CART)
+------------------------------ */
+.special-add-btn {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  font-weight: 500;
+  transition: 0.3s ease;
+  flex-shrink: 0; /* FIX */
 }
 
-.special-footer button:hover {
-    background: #4f46e5;
-    transform: scale(1.05);
+.special-add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-.special-footer button:active {
-    transform: scale(0.98);
+/* ------------------------------
+   FIXED QUANTITY BOX
+------------------------------ */
+.special-quantity-box {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  gap: 14px;
+  border-radius: 10px;
+  min-width: 130px; /* Always visible */
+  height: 42px;
+  flex-shrink: 0;  /* FIX — Never hide */
 }
 
-/* Tablet Responsive */
-@media (max-width: 1024px) {
-    .specials-section {
-        padding: 6rem 1.5rem;
-    }
-
-    .specials-grid {
-        gap: 2.5rem;
-        padding: 0 1.5rem;
-    }
-
-    .special-card img {
-        height: 200px;
-    }
+.q-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: rgba(255,255,255,0.25);
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
-/* Mobile Responsive */
+.q-btn:hover {
+  background: rgba(255,255,255,0.35);
+  transform: scale(1.1);
+}
+
+.q-display {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 15px !important;
+  text-align: center;
+  min-width: 25px;
+}
+
+/* ------------------------------
+   RESPONSIVE
+------------------------------ */
 @media (max-width: 768px) {
-    .specials-section {
-        padding: 5rem 1rem;
-    }
+  .special-footer {
+    gap: 1rem;
+  }
 
-    .specials-section h2 {
-        margin-bottom: 3rem;
-    }
-
-    .specials-grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 2rem;
-        padding: 0 1rem;
-    }
-
-    .special-card {
-        padding: 1.2rem;
-    }
-
-    .special-card img {
-        height: 180px;
-    }
+  .special-quantity-box {
+    min-width: 110px;
+  }
 }
 
-/* Small Mobile Responsive */
 @media (max-width: 480px) {
-    .specials-section {
-        padding: 4rem 1rem;
-    }
-
-    .specials-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .special-card img {
-        height: 200px;
-    }
-
-    .special-footer {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .special-footer button {
-        padding: 0.7rem 1.5rem;
-    }
+  .special-footer {
+    flex-direction: row;
+  }
 }

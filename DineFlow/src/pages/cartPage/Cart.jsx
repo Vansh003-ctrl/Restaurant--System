@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCart } from "../../context/CartContext";
 import "../../style/cartPage/Cart.css";
+import { MdDeleteOutline } from "react-icons/md";
 
 const Order = () => {
   const { cartItems, updateQuantity, updateInstructions, removeFromCart, clearCart } = useCart();
@@ -301,7 +302,7 @@ const OrderItemComponent = ({ item, onQuantityChange, onInstructionsChange, onDe
         />
       </div>
 
-      <button className="delete-button" onClick={() => onDelete(item.id)}>🗑</button>
+      <button className="delete-button" onClick={() => onDelete(item.id)}><MdDeleteOutline style={{fontSize:'2rem'}} /></button>
     </div>
   </div>
 );

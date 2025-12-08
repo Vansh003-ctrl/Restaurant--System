@@ -1,67 +1,42 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../../style/homePage/Feedback.css";
 
- const Feedback = () => {
-  const testimonials = [
-    {
-      id: 1,
-      text: "It has completely transformed our operations. Orders are smoother, and our kitchen staff loves real-time tracking. Highly recommend!",
-      name: "Alice Johnson",
-      role: "Restaurant Owner",
-      avatar: "https://i.pravatar.cc/150?u=alice",
-    },
-    {
-      id: 2,
-      text: "The digital menu is fantastic! Customers love the easy browsing and ordering. It's made a huge difference.",
-      name: "Bob Williams",
-      role: "Head Chef",
-      avatar: "https://i.pravatar.cc/150?u=bob",
-    },
-    {
-      id: 3,
-      text: "Efficiency is key in our diner, and it delivers. Billing is quick and dashboards give great insights.",
-      name: "Charlie Davis",
-      role: "Operations Manager",
-      avatar: null,
-    },
-  ];
+const feedbacks = [
+  { text: "Amazing food! The butter chicken was out of this world!", author: "Rohan S." },
+  { text: "Super fast delivery and packaging was perfect.", author: "Priya M." },
+  { text: "Loved the ambience — perfect spot for family dinners!", author: "Aman K." },
+  { text: "Pizza was fresh, cheesy and delicious!", author: "Neha G." },
+  { text: "Affordable and tasty. Great overall experience.", author: "Varun P." },
+  { text: "Brownie dessert was heavenly!", author: "Kavya R." },
+  { text: "Friendly staff and great service.", author: "Mehul T." },
+  { text: "One of the best restaurants in the area.", author: "Sneha L." },
+  { text: "Fresh ingredients and balanced flavors.", author: "Akash B." },
+  { text: "Loved the biryani — perfect spice levels!", author: "Sara K." },
+];
 
-  const getInitials = (name) =>
-    name
-      .split(" ")
-      .map((n) => n[0])
-      .slice(0, 2)
-      .join("");
+export default function CustomerFeedback() {
+  const trackRef = useRef(null);
+
+  useEffect(() => {
+    if (trackRef.current) {
+      trackRef.current.innerHTML += trackRef.current.innerHTML; // duplicate for infinite loop
+    }
+  }, []);
 
   return (
-    <section className="feedback-section" >
-      
-      <h2 className="feedback-heading">What Our Diners Say</h2>
+    <section className="cf-wrapper">
+      <h2 className="cf-title">What People Are Saying</h2>
 
-      <div className="feedback-grid">
-        {testimonials.map((t) => (
-          <div key={t.id} className="feedback-card">
-            <p className="feedback-text">"{t.text}"</p>
-
-            <div className="feedback-user-row">
-              {t.avatar ? (
-                <img src={t.avatar} alt={t.name} className="feedback-avatar" />
-              ) : (
-                <div className="feedback-avatar fallback">
-                  {getInitials(t.name)}
-                </div>
-              )}
-
-              <div>
-                <p className="feedback-name">{t.name}</p>
-                <p className="feedback-role">{t.role}</p>
-              </div>
+      <div className="cf-slider">
+        <div className="cf-track" ref={trackRef}>
+          {feedbacks.map((f, index) => (
+            <div className="cf-card" key={index}>
+              <p className="cf-text">“{f.text}”</p>
+              <p className="cf-author">– {f.author}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    
     </section>
   );
 }
-export default Feedback
