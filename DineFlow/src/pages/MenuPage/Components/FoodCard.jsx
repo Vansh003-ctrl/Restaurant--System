@@ -66,7 +66,7 @@ const FoodCard = ({ item, onQuickView, onAddToCart }) => {
               onClick={() => onAddToCart(item)} 
               className="btn-add-cart"
             >
-              <ShoppingCart size={18} />
+              <ShoppingCart size={18} color="white"/>
               Add to Cart
             </button>
           ) : (

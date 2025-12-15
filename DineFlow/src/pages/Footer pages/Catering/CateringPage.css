@@ -24,88 +24,35 @@ html,
 }
 
 /* HERO */
-.hero {
-    color: #fff;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 32vh;
-    padding: 6.4rem 2.4rem;
-    text-align: center;
-    width: 100%;
-    background-image: url('../../../assets/HeroPage.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden; /* important for blur */
+.story-hero {
+  width: 100%;
+  padding: 6rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f7f8fc 0%, #f7f8fc 100%);
+  color: #000000;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5); /* dark overlay */
-    backdrop-filter: blur(8px); /* blur image */
-    -webkit-backdrop-filter: blur(8px); 
-    z-index: 1;
-}
-
-.hero * {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-inner {
-    /* max-width: var(--container-width); */
-    width: 100%;
-    margin: 0 auto;
-    scale: 1.5;
-}
-
-.hero-title {
-    font-size: 60rem;
-    margin: 0 0 1.2rem 0;
+.story-title {
+   font-size: 3.25rem;
     font-weight: 600;
-    letter-spacing: -0.02em;
-    color: #fff;
-}
-.hero-inner button{
-
-    background: #6366f1;
-    padding: 1.1rem 2rem;
-    font-size: 1.6rem;
-    border-radius: 0.6rem;
-    cursor: pointer;
-    border: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    color: #fff;
-    scale: 0.6501;
-}
-.hero-inner button:hover {
-    background: #4f46e5;
-    transform: translateY(-2px);
-    scale: 0.6500;
 }
 
-.hero-sub {
-    font-size: 2rem;
-    /* 16px */
-    margin: 0 0 0.6rem 0;
-    opacity: 0.95;
-}
+.story-subtitle {
 
-.hero-date {
-    font-size: 1rem;
-    /* 14px */
-    opacity: 0.9;
-    margin-top: -0.6rem;
-}
+      margin-top: 1rem;
+    font-size: 1.7rem;
+    opacity: 0.92;
+    text-align: center;
 
+
+}
 /* MAIN CONTENT WRAP */
+.wraper-wrap {
+    background: #F7F8FC;
+
+}
 .content-wrap {
-    background: #fff;
+    background: #F7F8FC;
     padding: 4.8rem 2.4rem;
     /* 48px top/bottom */
     max-width: var(--container-width);

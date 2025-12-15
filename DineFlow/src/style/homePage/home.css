@@ -10,6 +10,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: gilroy;
+
 }
 
 .overlay {
@@ -26,6 +27,7 @@
     text-align: center;
     max-width: 80vw;
     color: #fff;
+    
     padding: 2rem;
 }
 

@@ -96,7 +96,7 @@ const TodaysMenu = () => {
                       onClick={() => handleAdd(item)}
                     >
                       <div className="flexx">
-                      <ShoppingCart size={16} /> 
+                      <ShoppingCart size={16} color='white' /> 
                       Add to Cart
                       </div>
                     </button>

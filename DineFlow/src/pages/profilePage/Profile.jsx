@@ -1,136 +1,184 @@
-import "../../style/profilePage/Profile.css";
-import React, { useState } from "react";
-import { FiEdit, FiLogOut } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import "./ProfilePage.css";
 
-export default function Profile() {
-  const [user, setUser] = useState({
-    name: "Ritesh Sharma",
-    email: "ritesh@example.com",
-    phone: "9736900011",
-    address: "Sector 45, Gurugram, Haryana",
-    joined: "March 2024",
-    points: 245,
-    image: null,
+export default function ProfilePage() {
+  const fileInputRef = useRef(null);
+
+  const [form, setForm] = useState({
+    fullName: "Ramu Kaka",
+    email: "kaka.ramu@example.com",
+    phone: "+91 9080706050",
+    about: "I visit weekly to maintain my toxic relationship with good food also to flirt with calories I can never escape.",
+    password: "",
+    repeatPassword: "",
   });
 
-  const [editOpen, setEditOpen] = useState(false);
-  const [passOpen, setPassOpen] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState(
+    "https://images.unsplash.com/photo-1723648722809-65f1e11e5060?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aW5kaWFuJTIwZ3V5JTIwZm9vZGllfGVufDB8fDB8fHww"
+  );
 
-  const recentOrders = [
-    { id: 1, name: "Margherita Pizza", amount: 125, image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop" },
-    { id: 2, name: "Choco Lava Cake", amount: 80, image: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop" },
-    { id: 3, name: "Fresh Orange Juice", amount: 60, image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=300&fit=crop" },
-  ];
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  const handleImage = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imgURL = URL.createObjectURL(file);
-      setUser({ ...user, image: imgURL });
+  // ---------------- VALIDATION ----------------
+  const validate = () => {
+    const e = {};
+    if (!form.fullName.trim()) e.fullName = "Full name is required.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      e.email = "Enter a valid email.";
+    if (form.password && form.password.length < 6)
+      e.password = "Password must be at least 6 characters.";
+    if (form.password !== form.repeatPassword)
+      e.repeatPassword = "Passwords do not match.";
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handleChange = (e) => {
+    setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
+    if (errors[e.target.name]) {
+      setErrors((p) => ({ ...p, [e.target.name]: undefined }));
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    setLoading(true);
+    await new Promise((r) => setTimeout(r, 800)); // mock API
+    alert("Profile updated ✔️");
+    setForm((p) => ({ ...p, password: "", repeatPassword: "" }));
+    setLoading(false);
+  };
+
+  // ---------------- AVATAR UPLOAD ----------------
+  const chooseFile = () => fileInputRef.current?.click();
+
+  const handleFile = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image must be < 5MB.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => setAvatarUrl(reader.result);
+    reader.readAsDataURL(file);
+  };
+
   return (
-    <div className="profile-page-redesign">
+    <div className="profile-shell">
+      <div className="profile-card">
 
-      {/* Profile Banner */}
-      <div className="profile-banner">
-        <div className="profile-pic-wrapper">
-          <img
-            src={user.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png"}
-            alt="profile"
-            className="profile-pic"
-          />
-          <label className="edit-pic-btn">
-            <FiEdit />
-            <input type="file" onChange={handleImage} hidden />
-          </label>
-        </div>
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
-        <span className="loyalty-badge">Gold Member</span>
-      </div>
-
-      {/* Quick Stats */}
-      <div className="stats-cards">
-        <div className="stat-card">
-          <h3>Orders</h3>
-          <p>32</p>
-        </div>
-        <div className="stat-card">
-          <h3>Favorites</h3>
-          <p>12</p>
-        </div>
-        <div className="stat-card">
-          <h3>Reward Points</h3>
-          <p>{user.points}</p>
-        </div>
-      </div>
-
-      {/* Personal Info */}
-      <div className="personal-info-card">
-        <h3>Personal Information</h3>
-        <div className="info-row"><strong>Phone:</strong> {user.phone}</div>
-        <div className="info-row"><strong>Address:</strong> {user.address}</div>
-        <div className="info-row"><strong>Joined:</strong> {user.joined}</div>
-        <button className="btn-edit-profile" onClick={() => setEditOpen(true)}>Edit Profile</button>
-      </div>
-
-      {/* Recent Orders */}
-      <div className="recent-orders">
-        <h3>Recent Orders</h3>
-        <div className="orders-scroll">
-          {recentOrders.map(order => (
-            <div key={order.id} className="order-card">
-              <img src={order.image} alt={order.name} />
-              <p>{order.name}</p>
-              <p>₹{order.amount.toFixed(2)}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="quick-actions">
-        <Link to="/orders" className="action-btn">View Orders</Link>
-        <button className="action-btn" onClick={() => setPassOpen(true)}>Change Password</button>
-        <button className="logout-btn" onClick={() => alert("Logged Out!")}>Logout</button>
-      </div>
-
-      {/* EDIT PROFILE MODAL */}
-      {editOpen && (
-        <div className="modal-overlay">
-          <div className="modal-box">
-            <h2>Edit Profile</h2>
-            <input type="text" defaultValue={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })}/>
-            <input type="email" defaultValue={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })}/>
-            <input type="text" defaultValue={user.phone} onChange={(e) => setUser({ ...user, phone: e.target.value })}/>
-            <input type="text" defaultValue={user.address} onChange={(e) => setUser({ ...user, address: e.target.value })}/>
-            <div className="modal-buttons">
-              <button className="btn-save" onClick={() => setEditOpen(false)}>Save</button>
-              <button className="btn-cancel" onClick={() => setEditOpen(false)}>Cancel</button>
-            </div>
+        {/* ---------- SIDEBAR ---------- */}
+        <aside className="profile-side">
+          <div className="pro-avatar-wrap">
+            <img src={avatarUrl} alt="" className="pro-avatar" />
+            <button onClick={chooseFile} className="pro-upload">Change</button>
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              ref={fileInputRef}
+              onChange={handleFile}
+            />
           </div>
-        </div>
-      )}
 
-      {/* CHANGE PASSWORD MODAL */}
-      {passOpen && (
-        <div className="modal-overlay">
-          <div className="modal-box">
-            <h2>Change Password</h2>
-            <input type="password" placeholder="Current Password"/>
-            <input type="password" placeholder="New Password"/>
-            <input type="password" placeholder="Confirm Password"/>
-            <div className="modal-buttons">
-              <button className="btn-save" onClick={() => setPassOpen(false)}>Change Password</button>
-              <button className="btn-cancel" onClick={() => setPassOpen(false)}>Cancel</button>
-            </div>
+          <div className="pro-side-info">
+            <p className="pro-name">{form.fullName}</p>
+            <p className="pro-email">{form.email}</p>
           </div>
-        </div>
-      )}
 
+          <div className="pro-nav">
+            <button className="pro-nav-item">My Table Bookings</button>
+            <button className="pro-nav-item">My Orders</button>
+            <button className="pro-nav-item">My Cart</button>
+          </div>
+        </aside>
+
+        {/* ---------- MAIN FORM ---------- */}
+        <main className="profile-main">
+          <form onSubmit={handleSubmit} className="pro-form">
+            <h2 className="pro-title">Profile Details</h2>
+
+            {/* Full name */}
+            <label className="pro-label">Full name *</label>
+            <input
+              name="fullName"
+              value={form.fullName}
+              onChange={handleChange}
+              className={`pro-input ${errors.fullName ? "error" : ""}`}
+            />
+            {errors.fullName && <p className="pro-err">{errors.fullName}</p>}
+
+            {/* Email */}
+            <label className="pro-label">Email *</label>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              className={`pro-input ${errors.email ? "error" : ""}`}
+            />
+            {errors.email && <p className="pro-err">{errors.email}</p>}
+
+            {/* Phone */}
+            <label className="pro-label">Phone</label>
+            <input
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              className="pro-input"
+            />
+
+            {/* About */}
+            <label className="pro-label">About</label>
+            <textarea
+              name="about"
+              rows={3}
+              value={form.about}
+              onChange={handleChange}
+              className="pro-textarea"
+            />
+
+            <hr className="pro-divider" />
+
+            <p className="pro-small">Change password (optional)</p>
+
+            {/* Password */}
+            <label className="pro-label">New password</label>
+            <input
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              className={`pro-input ${errors.password ? "error" : ""}`}
+            />
+            {errors.password && <p className="pro-err">{errors.password}</p>}
+
+            {/* Repeat */}
+            <label className="pro-label">Repeat password</label>
+            <input
+              type="password"
+              name="repeatPassword"
+              value={form.repeatPassword}
+              onChange={handleChange}
+              className={`pro-input ${errors.repeatPassword ? "error" : ""}`}
+            />
+            {errors.repeatPassword && (
+              <p className="pro-err">{errors.repeatPassword}</p>
+            )}
+
+            <div className="pro-actions">
+              <button className="pro-btn" disabled={loading}>
+                {loading ? "Saving..." : "Save changes"}
+              </button>
+            </div>
+          </form>
+        </main>
+      </div>
     </div>
   );
 }

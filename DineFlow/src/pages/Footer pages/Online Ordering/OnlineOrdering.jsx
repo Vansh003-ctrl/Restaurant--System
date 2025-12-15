@@ -43,7 +43,7 @@ export default OnlineOrdering;
 
 /* =================== Hero Section =================== */
 const HeroSection = () => (
-  <section className="hero-section">
+  <section className="hero-section1">
     <h1>Online Ordering Coming Soon!</h1>
     <p>
       We are excited to serve you fresh meals soon via online ordering. Meanwhile, you can reach out to us directly or order via our trusted partners.

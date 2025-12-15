@@ -6,6 +6,7 @@ const OurPassion = () => {
     const navigate = useNavigate();
     const handleRedirect = () => {
       navigate("/contact");
+      window.scrollTo(0, 0);
     };
   return (
     <>
