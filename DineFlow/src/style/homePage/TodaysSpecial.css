@@ -6,10 +6,11 @@
 }
 
 .specials-section {
-  padding: 8rem 2rem;
+  padding: 0rem 2rem;
   text-align: center;
-  background: #fff;
-  margin-top: -7rem;
+    background-color: #f7f8fc;
+
+  margin-top: 5rem;
 }
 
 .specials-section h2 {

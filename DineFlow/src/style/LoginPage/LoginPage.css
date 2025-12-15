@@ -1,4 +1,6 @@
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -82,9 +84,12 @@ html, body, #root {
   background: rgba(255, 255, 255, 0.12);
   box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
 }
+
 .label input::placeholder {
-  color: rgba(27, 21, 21, 0.55);
-  opacity: 1; /* Very important for Firefox */
+  color: rgba(3, 3, 3, 0.55) !important;
+
+  opacity: 1;
+  /* Very important for Firefox */
 }
 
 /* Password wrapper */
@@ -159,6 +164,13 @@ html, body, #root {
 
 /* Fade animation */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -10,29 +10,16 @@ import "../style/Footer.css";
 import logo from "../assets/Graphura logo Black.png";
 
 export default function Footer() {
-  const companyLinks = [
-    { name: "About Us", href: "/about" },
-    { name: "Why Choose Us", href: "/whychooseus" },
-    { name: "Our Story", href: "/our-story" },
-  ];
-
-  const supportLinks = [
-    { name: "Contact Us", href: "/contact" },
-    { name: "FAQ", href: "/faq" },
-    { name: "Privacy Policy", href: "/privacy" },
-  ];
-
-  const servicesLinks = [
-    { name: "Online Ordering", href: "/ordering" },
-    { name: "Table Booking", href: "/reservation" },
-    { name: "Catering", href: "/catering" },
-  ];
-
   const socialLinks = [
-    { icon: Facebook, href: "#facebook", label: "Facebook", color: "#1877F2" },
-    { icon: Twitter, href: "#twitter", label: "Twitter", color: "#1DA1F2" },
-    { icon: Instagram, href: "#instagram", label: "Instagram", color: "linear-gradient(45deg, #F58529, #FEDA77, #DD2A7B, #8134AF, #515BD4)" },
-    { icon: Linkedin, href: "#linkedin", label: "LinkedIn", color: "#0A66C2" },
+    { icon: Facebook, href: "https://www.facebook.com/Graphura.in?rdid=mznlALZZfcc0M1j1&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19nKAMTopZ%2F#", label: "Facebook", color: "#1877F2" },
+    { icon: Twitter, href: "https://x.com/Graphura", label: "Twitter", color: "#1DA1F2" },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/graphura.in/",
+      label: "Instagram",
+      gradient: true
+    },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/graphura-india-private-limited/", label: "LinkedIn", color: "#0A66C2" },
   ];
 
   return (
@@ -55,8 +42,8 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="footer-social-link"
-                  style={{ background: social.color }}
+                  className={`footer-social-link ${social.gradient ? "insta-gradient" : ""}`}
+                  style={!social.gradient ? { background: social.color } : {}}
                   aria-label={social.label}
                 >
                   <social.icon className="footer-social-icon" />
@@ -69,13 +56,9 @@ export default function Footer() {
           <div className="footer-section">
             <h3 className="footer-heading">Company</h3>
             <ul className="footer-links">
-              {companyLinks.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.href} className="footer-link">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              <li onClick={() => window.scrollTo(0, 0)}><Link to="/about" className="footer-link">About Us</Link></li>
+              <li onClick={() => window.scrollTo(0, 0)}><Link to="/blogs" className="footer-link">Blogs</Link></li>
+              <li onClick={() => window.scrollTo(0, 0)}><Link to="/our-story" className="footer-link">Our Story</Link></li>
             </ul>
           </div>
 
@@ -83,13 +66,9 @@ export default function Footer() {
           <div className="footer-section">
             <h3 className="footer-heading">Support</h3>
             <ul className="footer-links">
-              {supportLinks.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.href} className="footer-link">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              <li onClick={() => window.scrollTo(0, 0)}><Link to="/contact" className="footer-link">Contact Us</Link></li>
+              <li onClick={() => window.scrollTo(0, 0)}><Link to="/faq" className="footer-link">FAQ</Link></li>
+              <li onClick={() => window.scrollTo(0, 0)}><Link to="/privacy" className="footer-link">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -97,25 +76,20 @@ export default function Footer() {
           <div className="footer-section">
             <h3 className="footer-heading">Services</h3>
             <ul className="footer-links">
-              {servicesLinks.map((link) => (
-                <li key={link.name}>
-                  <Link to={link.href} className="footer-link">
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              <li onClick={() => window.scrollTo(0, 0)}><Link to="/ordering" className="footer-link">Online Ordering</Link></li>
+              <li onClick={() => window.scrollTo(0, 0)}><Link to="/reservation" className="footer-link">Table Booking</Link></li>
+              <li onClick={() => window.scrollTo(0, 0)}><Link to="/catering" className="footer-link">Catering</Link></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div className="footer-section footer-contact">
             <h3 className="footer-heading">Contact Us</h3>
+
             <ul className="contact-list">
               <li>
                 <span className="contact-label">Address:</span>
-                <p>
-                  Graphura India Pvt. Ltd., Near RSF, Pataudi, Gurgaon, Haryana 122503
-                </p>
+                <p>Graphura India Pvt. Ltd., Near RSF, Pataudi, Gurgaon, Haryana 122503</p>
               </li>
 
               <li>
@@ -134,7 +108,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="footer-bottom">
           <p className="copyright">
-            © 2025 Graphura. All rights reserved.
+            © 2025 Graphura India Private Limited. All rights reserved.
           </p>
         </div>
       </div>

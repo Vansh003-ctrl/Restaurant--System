@@ -88,9 +88,9 @@ const Order = () => {
     }
   };
 
-  /* ============================
-        RAZORPAY PAYMENT FLOW
-     ============================ */
+
+        // RAZORPAY PAYMENT FLOW
+
   const initiatePayment = async () => {
     if (isProcessing) return;
 
@@ -227,9 +227,9 @@ const Order = () => {
     }
   };
 
-  /* ============================
-        COMPONENT JSX
-     ============================ */
+
+        // COMPONENT JSX
+
   return (
     <div className="order-page">
       <div className="order-container">
@@ -293,7 +293,7 @@ const OrderItemComponent = ({ item, onQuantityChange, onInstructionsChange, onDe
             onDecrease={() => onQuantityChange(item.id, item.quantity - 1)}
             onIncrease={() => onQuantityChange(item.id, item.quantity + 1)}
           />
-          <span className="order-item-price">${(item.price * item.quantity).toFixed(2)}</span>
+          <span className="order-item-price">₹{(item.price * item.quantity).toFixed(2)}</span>
         </div>
 
         <InstructionsBox
@@ -340,15 +340,15 @@ const OrderSummary = ({
     <h2 className="order-summary-title">Order Summary</h2>
 
     <div className="order-summary-row">
-      <span>Subtotal</span> <span>${subtotal.toFixed(2)}</span>
+      <span>Subtotal</span> <span>₹{subtotal.toFixed(2)}</span>
     </div>
 
     <div className="order-summary-row">
-      <span>Tax (10%)</span> <span>${tax.toFixed(2)}</span>
+      <span>Tax (10%)</span> <span>₹{tax.toFixed(2)}</span>
     </div>
 
     <div className="order-summary-row total-row">
-      <span>Total</span> <span>${total.toFixed(2)}</span>
+      <span>Total</span> <span>₹{total.toFixed(2)}</span>
     </div>
 
     <label className="table-label">Table Number</label>

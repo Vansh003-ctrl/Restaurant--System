@@ -30,26 +30,14 @@ export default function CateringPage() {
 
   return (
     <div className="catering-page">
-      <header className="hero">
-        <div className="hero-inner">
-          <h1 className="hero-title">Catering & Events</h1>
-          <p className="hero-sub">
-            Seamless restaurant automation for every event
-          </p>
-          <p className="hero-date">Updated on 4 November 2025</p>
-          <button
-            className="learn-more"
-            onClick={() => {
-              document.getElementById("about-section").scrollIntoView({
-                behavior: "smooth",
-              });
-            }}
-          >
-            Learn more
-          </button>
-        </div>
-      </header>
+            <section className="story-hero">
+        <h1 className="story-title">Leave the Food to Us — Enjoy the Celebration</h1>
+        <p className="story-subtitle">
+         From intimate gatherings to grand celebrations, our catering service delivers fresh, beautifully crafted dishes that make every moment memorable.
+        </p>
+      </section>
 
+    <div className="wraper-wrap">
       <main className="content-wrap">
         <section className="content-columns">
           <article className="content-main">
@@ -206,6 +194,7 @@ export default function CateringPage() {
           </p>
         </section>
       </main>
+      </div>
     </div>
   );
 }

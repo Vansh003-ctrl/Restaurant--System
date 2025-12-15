@@ -1,78 +1,83 @@
-import React from "react";
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import "../../../style/MenuPage/QuickViewModal.css";
-import CategoryBadge from "./CategoryBadge.jsx";
+import CategoryBadge from "./CategoryBadge";
+import { FaClock } from "react-icons/fa";
+import { MdStarRate } from "react-icons/md";
+import { FaStar } from "react-icons/fa6";
+import { GoGraph } from "react-icons/go";
 
-const QuickViewModal = ({ item, onClose, onAddToCart }) => {
+export default function QuickViewModal({ item, onClose, onAddToCart }) {
   if (!item) return null;
 
-  const handleAddToCart = () => {
-    onAddToCart(item);
-    onClose(); // Close modal after adding to cart
-  };
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
-  return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-image-container">
-          <img src={item.image} alt={item.name} className="modal-image" />
-          <button onClick={onClose} className="modal-close-btn">
+  return createPortal(
+    <div className="qv-overlay" onClick={onClose}>
+      <div className="qv-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="qv-image">
+          <img src={item.image} alt={item.name} />
+          <button className="qv-close" onClick={onClose}>
             ✕
           </button>
-          <div className="modal-badge">
+          <div className="qv-badge">
             <CategoryBadge category={item.category} />
           </div>
         </div>
 
-        <div className="modal-body">
-          <div className="modal-header">
-            <h2 className="modal-title">{item.name}</h2>
-            <span className="modal-price">${item.price}</span>
+        <div className="qv-content">
+          <div className="qv-header">
+            <h2>{item.name}</h2>
+            <span className="qv-price">₹{item.price}</span>
           </div>
 
-          <p className="modal-description">{item.description}</p>
+          <p className="qv-desc">{item.description}</p>
 
-          <div className="modal-stats">
-            <div className="stat-item">
-              <div className="stat-value">
-                <span className="star-icon">★</span>
-                <span className="stat-number">{item.rating}</span>
+          <div className="qv-stats">
+            <span>
+              <div className="flexy">
+                <FaStar size={12} /> {item.rating}
               </div>
-              <p className="stat-label">{item.reviews} reviews</p>
-            </div>
-            <div className="stat-item">
-              <div className="stat-value">
-                <span className="clock-icon">🕐</span>
-                <span className="stat-number">{item.prepTime}</span>
+            </span>
+            <span>
+              <div className="flexy">
+                <FaClock size={12} /> {item.prepTime}
               </div>
-              <p className="stat-label">Prep time</p>
-            </div>
-            <div className="stat-item">
-              <div className="stat-value">
-                <span className="chef-icon">👨‍🍳</span>
-                <span className="stat-number">{item.popularity}%</span>
+            </span>
+            <span>
+              <div className="flexy">
+                <GoGraph size={12} style={{ strokeWidth: 1 }} />
+                {item.popularity}%
               </div>
-              <p className="stat-label">Popularity</p>
-            </div>
+            </span>
           </div>
 
-          <div className="modal-ingredients">
-            <h3 className="ingredients-title">Ingredients</h3>
-            <div className="ingredients-list">
-              {item.ingredients.map((ingredient, index) => (
-                <span key={index} className="ingredient-tag">
-                  {ingredient}
-                </span>
+          <div className="qv-section">
+            <h4>Ingredients</h4>
+            <div className="qv-tags">
+              {item.ingredients.map((ing, i) => (
+                <span key={i}>{ing}</span>
               ))}
             </div>
           </div>
 
-          <button className="modal-add-cart-btn" onClick={handleAddToCart}>
-            Add to Cart - ${item.price}
+          <button
+            className="qv-add"
+            onClick={() => {
+              onAddToCart(item);
+              onClose();
+            }}
+          >
+            Add to Cart – ₹{item.price}
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
-};
-
-export default QuickViewModal;
+}

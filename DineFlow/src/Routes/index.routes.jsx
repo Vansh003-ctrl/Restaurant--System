@@ -14,7 +14,7 @@ import Catering from "../pages/Footer pages/Catering/CateringPage.jsx";
 import AboutUs from '../pages/Footer pages/AboutUs/AboutUs.jsx'
 import Profile from '../pages/profilePage/Profile.jsx'
 import Reservation from "../pages/reservationPage/Reservation.jsx"
-import WhyChooseUs from "../pages/Footer pages/whyChooseUs/WhyChooseUs.jsx"
+import Blogs from "../pages/Footer pages/blogsPage/Blogs.jsx"
 import OurStory from "../pages/Footer pages/ourStory/OurStory.jsx"
 import FAQ from "../pages/Footer pages/FAQ/FAQPage.jsx"
 import Ordering from "../pages/Footer pages/Online Ordering/OnlineOrdering.jsx"
@@ -42,7 +42,7 @@ export default function Index({ isAdmin }) {
       <Route path= "/about" element={<AboutUs />} /> 
       <Route path= "/profile" element={<Profile />} /> 
       <Route path= "/reservation" element={<Reservation />} /> 
-      <Route path= "/whychooseus" element={<WhyChooseUs />} /> 
+      <Route path= "/blogs" element={<Blogs />} /> 
       <Route path= "/our-story" element={<OurStory />} /> 
       <Route path= "/faq" element={<FAQ />} /> 
       <Route path= "/ordering" element={<Ordering />} /> 

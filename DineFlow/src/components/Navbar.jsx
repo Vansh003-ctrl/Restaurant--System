@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, User } from "lucide-react";
 import { GiShoppingCart } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "../style/Navbar.css";
 import logo from "../assets/Graphura logo Black.png";
@@ -9,6 +9,8 @@ import logo from "../assets/Graphura logo Black.png";
 export default function Navbar({ isAdmin = false }) {
   const [isOpen, setIsOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef = useRef(null);
+  const location = useLocation();
 
   const { getCartCount } = useCart();
   const cartCount = getCartCount();
@@ -29,52 +31,72 @@ export default function Navbar({ isAdmin = false }) {
     );
   }
 
-  const profileMenu = [
-    { name: "My Profile", path: "/profile" },
-    { name: "My Orders", path: "/order" },
-    { name: "Logout", path: "/login" },
-  ];
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsOpen(false);
+    setProfileOpen(false);
+  }, [location]);
+
+  // Close profile dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileOpen(false);
+      }
+    }
+
+    if (profileOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [profileOpen]);
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-content">
-          
           {/* Logo */}
           <div className="navbar-logo">
-            <img src={logo} alt="logo" />
+            <NavLink to="/">
+              <img src={logo} alt="logo" />
+            </NavLink>
           </div>
 
           {/* Desktop Navigation */}
           <div className="navFlex">
             <div className="navbar-menu">
               {navItems.map((item) => (
-                <Link
+                <NavLink
                   key={item.path}
                   to={item.path}
-                  className="nav-link flex items-center gap-2"
+                  end={item.path === "/"}
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active-nav-link" : ""}`
+                  }
                 >
                   {item.name}
-                </Link>
+                </NavLink>
               ))}
             </div>
           </div>
 
           {/* Right Section */}
           <div className="navbar-container-second">
-
             {/* Cart */}
             <div className="cart-icon-wrapper">
-              <Link to="/cart" className="nav-link cart-link flex items-center gap-2">
-                <GiShoppingCart size={26} className="cart-icon" />
+              <NavLink to="/cart" className="nav-link cart-link">
+                <GiShoppingCart size={26} />
                 {cartCount > 0 && (
                   <span className="cart-badge">{cartCount}</span>
                 )}
-              </Link>
+              </NavLink>
             </div>
 
-            {/* Profile Dropdown */}
-            <div className="profile-wrapper">
+            {/* Profile */}
+            <div className="profile-wrapper" ref={profileRef}>
               <button
                 className="profile-btn"
                 onClick={() => setProfileOpen(!profileOpen)}
@@ -84,21 +106,20 @@ export default function Navbar({ isAdmin = false }) {
 
               {profileOpen && (
                 <div className="profile-dropdown">
-                  {profileMenu.map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className="profile-dropdown-item"
-                      onClick={() => setProfileOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  <NavLink to="/profile" className="profile-dropdown-item">
+                    My Profile
+                  </NavLink>
+                  <NavLink to="/order" className="profile-dropdown-item">
+                    My Orders
+                  </NavLink>
+                  <NavLink to="/login" className="profile-dropdown-item">
+                    Logout
+                  </NavLink>
                 </div>
               )}
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Toggle */}
             <div className="mobile-menu-button">
               <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -107,7 +128,6 @@ export default function Navbar({ isAdmin = false }) {
                 {isOpen ? <X className="icon" /> : <Menu className="icon" />}
               </button>
             </div>
-
           </div>
         </div>
 
@@ -116,31 +136,18 @@ export default function Navbar({ isAdmin = false }) {
           <div className="mobile-menu">
             <div className="mobile-menu-items">
               {navItems.map((item) => (
-                <Link
+                <NavLink
                   key={item.path}
                   to={item.path}
-                  className="mobile-nav-link"
+                  end={item.path === "/"}
+                  className={({ isActive }) =>
+                    `mobile-nav-link ${isActive ? "active-mobile-nav-link" : ""}`
+                  }
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
-                </Link>
+                </NavLink>
               ))}
-
-              {/* Mobile Profile Menu */}
-              <div className="mobile-profile-section">
-                <div className="mobile-profile-title">Account</div>
-
-                {profileMenu.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className="mobile-nav-link"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
             </div>
           </div>
         )}

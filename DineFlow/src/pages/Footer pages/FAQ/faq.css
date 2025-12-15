@@ -20,10 +20,10 @@
 /* HERO SECTION */
 .faq-hero {
     width: 100%;
-    padding: 6rem 2rem;
+    padding: 2rem 2rem;
     text-align: center;
-    background: linear-gradient(135deg, #4b5dff 0%, #6a7dff 100%);
-    color: #fff;
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    color: #000000;
 }
 
 .faq-hero h1 {
@@ -48,7 +48,7 @@
 .faq-list {
     width: 90%;
     max-width: 900px;
-    margin: 4rem auto;
+    margin: 2rem auto;
     display: flex;
     flex-direction: column;
     gap: 2.2rem;

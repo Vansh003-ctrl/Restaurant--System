@@ -16,11 +16,13 @@ const Hero = () => {
   const navigate = useNavigate();
   const handleRedirect = () => {
     navigate("/menu");
+    window.scrollTo(0, 0);
   };
   return (
     <section className="hero">
       {/* Layer 1 overlay */}
       <div className="overlay"></div>
+
 
       {/* Content */}
       <div className="hero-content">
@@ -36,7 +38,7 @@ const Hero = () => {
         </p>
 
         <div className="buttons">
-          <button className="btn-light" onClick={handleRedirect}>
+          <button className="btn-ligh" onClick={handleRedirect}>
             View Menu
           </button>
           <button className="btn-primar" onClick={scrollToTodaysSpecial}>
@@ -44,6 +46,8 @@ const Hero = () => {
           </button>
         </div>
       </div>
+
+
 
       {/* Footer text */}
     </section>

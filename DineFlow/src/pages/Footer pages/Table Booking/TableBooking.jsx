@@ -1,62 +1,148 @@
-import React from "react";
+import React, { useState } from "react";
 import "./TableBooking.css";
 
-const TableBooking = () => {
-    return (
-        <div className="booking-container">
+const TABLES = [
+  { id: 1, number: "T1", seats: 2, status: "Available" },
+  { id: 2, number: "T2", seats: 4, status: "Booked" },
+  { id: 3, number: "T3", seats: 6, status: "Reserved" },
+  { id: 4, number: "T4", seats: 4, status: "Available" },
+];
 
-            {/* Header Section */}
-            <header className="booking-header">
-                <h1 className="booking-title">Table Booking</h1>
-                <p className="booking-subtitle">
-                    Reserve your dining experience powered by our Restaurant Automation System
-                </p>
-                <p className="booking-date">Updated on 4 November 2025</p>
-            </header>
+export default function TableBooking() {
+  const [selectedTable, setSelectedTable] = useState(null);
 
-            {/* Content Section */}
-            <section className="booking-content">
+  const handleTableSelect = (table) => {
+    if (table.status === "Available") {
+      setSelectedTable(table);
+    }
+  };
 
-                <h2 className="section-title">Why Online Table Booking?</h2>
-                <p className="section-text">
-                    Our smart restaurant automation system allows customers to reserve tables effortlessly
-                    and helps restaurants manage seating, reduce wait times, and improve dining efficiency.
-                </p>
+  const handleClose = () => {
+    setSelectedTable(null);
+  };
 
-                <h2 className="section-title">Book Your Table</h2>
-                <form className="booking-form">
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Reservation confirmed successfully!");
+    setSelectedTable(null);
+  };
 
-                    <label className="booking-label">Full Name</label>
-                    <input type="text" className="booking-input" placeholder="Enter your name" />
+  return (
+    <div className="reservation-page">
+      <div className="reservation-container">
+        <header className="reservation-header">
+          <h1>Reservations</h1>
+          <p>Book your table in advance for a seamless dining experience.</p>
+        </header>
 
-                    <label className="booking-label">Phone Number</label>
-                    <input type="text" className="booking-input" placeholder="Enter your phone number" />
+        <div className="reservation-content">
+          {/* LEFT PANEL - Table List */}
+          <div className="tables-panel">
+            <h2>Available Tables</h2>
+            <div className="tables-list">
+              {TABLES.map((table) => (
+                <div
+                  key={table.id}
+                  className={`table-card ${
+                    selectedTable?.id === table.id ? "selected" : ""
+                  } ${table.status !== "Available" ? "disabled" : ""}`}
+                  onClick={() => handleTableSelect(table)}
+                >
+                  <div className="table-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M3 9h18M3 15h18M5 3v18M19 3v18" />
+                    </svg>
+                  </div>
+                  <div className="table-info">
+                    <h3>{table.number}</h3>
+                    <p>{table.seats} SEATS</p>
+                  </div>
+                  <span className={`status-badge status-${table.status.toLowerCase()}`}>
+                    {table.status}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-                    <label className="booking-label">Number of Guests</label>
-                    <input type="number" className="booking-input" min="1" max="20" />
+          {/* RIGHT PANEL - Booking Form */}
+          {selectedTable && (
+            <div className="booking-panel">
+              <div className="booking-header">
+                <div className="booking-title">
+                  <h2>Table {selectedTable.number}</h2>
+                  <p>{selectedTable.seats} Seats</p>
+                </div>
+                {/* CLOSE BUTTON - EXPLICITLY STYLED */}
+                <button
+                  className="close-btn-custom"
+                  onClick={handleClose}
+                  type="button"
+                  title="Close"
+                >
+                  ✕
+                </button>
+              </div>
 
-                    <label className="booking-label">Booking Date</label>
-                    <input type="date" className="booking-input" />
+              <form className="booking-form" onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label>Date</label>
+                  <input
+                    type="date"
+                    required
+                    min={new Date().toISOString().split("T")[0]}
+                  />
+                </div>
 
-                    <label className="booking-label">Preferred Time</label>
-                    <input type="time" className="booking-input" />
+                <div className="form-group">
+                  <label>Time Slot</label>
+                  <select required defaultValue="">
+                    <option value="" disabled>
+                      Select time
+                    </option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">01:00 PM</option>
+                    <option value="14:00">02:00 PM</option>
+                    <option value="19:00">07:00 PM</option>
+                    <option value="20:00">08:00 PM</option>
+                    <option value="21:00">09:00 PM</option>
+                  </select>
+                </div>
 
-                    <button type="submit" className="booking-btn">Confirm Booking</button>
+                <div className="form-group">
+                  <label>Guests</label>
+                  <input
+                    type="number"
+                    min="1"
+                    max={selectedTable.seats}
+                    required
+                    placeholder="Number of guests"
+                  />
+                </div>
 
-                </form>
+                <div className="form-group">
+                  <label>Special Notes</label>
+                  <textarea
+                    rows="4"
+                    placeholder="Birthday, window seat, extra plates..."
+                  />
+                </div>
 
-                <h2 className="section-title">How Automation Helps</h2>
-                <p className="section-text">
-                    • Real-time table availability<br />
-                    • Automatic confirmation via SMS<br />
-                    • Intelligent seating optimization<br />
-                    • Queue and wait-time prediction<br />
-                    • Staff notification alerts
-                </p>
-
-            </section>
+                <button type="submit" className="confirm-button">
+                  Confirm Reservation
+                </button>
+              </form>
+            </div>
+          )}
         </div>
-    );
-};
-
-export default TableBooking;
+      </div>
+    </div>
+  );
+}
